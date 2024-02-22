@@ -23,5 +23,14 @@ public class InputManager : MonoBehaviour
         return moveDir;
     }
 
+    public static bool GetGamePauseInput()
+    {
+        //KeyCode is going to be "Escape" eventually
+        // using "P" as temporary pause button to avoid confliction between unity's own escape key
+        if (Input.GetKeyDown(KeyCode.P)) return true;
+
+        return false;
+    }
+
 
 }
