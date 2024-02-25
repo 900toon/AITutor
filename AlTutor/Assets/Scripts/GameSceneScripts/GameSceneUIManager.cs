@@ -1,8 +1,9 @@
 using UnityEngine;
-
+using TMPro;
 public class GameSceneUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gamePauseCanvas;
+    [SerializeField] private TMP_Text isRecordingSignal;
     private bool IsGamePaused = false;
     private void ToggleGamePauseUI()
     {
@@ -24,9 +25,16 @@ public class GameSceneUIManager : MonoBehaviour
         
     }
 
+    private void ToggleIsRecordingSignalUI()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) isRecordingSignal.color = Color.red;
+        if (Input.GetKeyUp(KeyCode.R)) isRecordingSignal.color = Color.black;
+    }
+
     private void Update()
     {
         ToggleGamePauseUI();
+        ToggleIsRecordingSignalUI();
     }
 
 

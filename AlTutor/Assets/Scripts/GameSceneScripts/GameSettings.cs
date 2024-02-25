@@ -4,10 +4,17 @@ using UnityEngine.SceneManagement;
 public class GameSettings : MonoBehaviour
 {
     private static int MENU_SCENE_CODE_NUMBER = 0;
+    private static int GAME_SCENE_CODE_NUMBER = 1;
     public static bool LoadMenuScene()
     {
         SceneManager.LoadScene(MENU_SCENE_CODE_NUMBER);
         UnLockMouse();
+        return true;
+    }
+    public static bool LoadGameScene()
+    {
+        SceneManager.LoadScene(GAME_SCENE_CODE_NUMBER);
+
         return true;
     }
 

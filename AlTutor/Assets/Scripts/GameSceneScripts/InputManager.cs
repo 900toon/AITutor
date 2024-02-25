@@ -32,5 +32,11 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
+    public static bool GetRecordKeyPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyUp(KeyCode.R)) return true;
+        return false;
+    }
+
 
 }

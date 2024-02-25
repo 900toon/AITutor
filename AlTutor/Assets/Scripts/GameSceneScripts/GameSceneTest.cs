@@ -6,4 +6,8 @@ public class GameSceneTest : MonoBehaviour
     {
         GameSettings.LockMouse();
     }
+    private void Update()
+    {
+        
+    }
 }
