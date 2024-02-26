@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 #git ignore custome added
 PythonApi/API_Key.json
+AlTutor/Assets/DataTransfer/ServerOutput_Text/*
