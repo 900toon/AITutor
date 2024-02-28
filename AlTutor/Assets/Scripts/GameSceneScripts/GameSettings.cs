@@ -47,4 +47,8 @@ public class GameSettings : MonoBehaviour
         Cursor.visible = true;  
     }
     
+    public static string GetResponseTextDirectory()
+    {
+        return Application.dataPath + @"/DataTransfer/ServerOutput_Text";
+    }
 }

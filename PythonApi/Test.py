@@ -54,7 +54,7 @@ while(True):
         print("transcript fetch success")
         output = Conversation.invoke(transcript)
         
-        with open(transcriptPath + f"\\output{txtfileNumber}.txt", "w+") as f2:
+        with open(transcriptPath + f"\\output{txtfileNumber}.txt", "w+", encoding='utf-8') as f2:
             f2.write(output['response'])
 
         txtfileNumber+=1
