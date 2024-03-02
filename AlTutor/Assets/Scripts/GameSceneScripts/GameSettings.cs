@@ -5,6 +5,7 @@ public class GameSettings : MonoBehaviour
 {
     private static int MENU_SCENE_CODE_NUMBER = 0;
     private static int GAME_SCENE_CODE_NUMBER = 1;
+    
     public static bool LoadMenuScene()
     {
         SceneManager.LoadScene(MENU_SCENE_CODE_NUMBER);
@@ -14,7 +15,8 @@ public class GameSettings : MonoBehaviour
     public static bool LoadGameScene()
     {
         SceneManager.LoadScene(GAME_SCENE_CODE_NUMBER);
-
+        LockMouse();
+        Time.timeScale = 1;
         return true;
     }
 
@@ -51,4 +53,6 @@ public class GameSettings : MonoBehaviour
     {
         return Application.dataPath + @"/DataTransfer/ServerOutput_Text";
     }
+
+    
 }

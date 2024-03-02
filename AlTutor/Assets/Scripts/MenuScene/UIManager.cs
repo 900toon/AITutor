@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     //start button
     public void StartButton()
     {
-        Debug.Log("START"); 
+        GameSettings.LoadGameScene();
         WriteInitializationDocument();
     
     }

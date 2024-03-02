@@ -1,10 +1,15 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class GameSceneUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gamePauseCanvas;
     [SerializeField] private TMP_Text isRecordingSignal;
+    [SerializeField] private Text dialogueText_chatgptResponse;
+    [SerializeField] private GameObject dialogueText_chatgpt;
     private bool IsGamePaused = false;
+    
     private void ToggleGamePauseUI()
     {
         if (InputManager.GetGamePauseInput())
@@ -31,10 +36,21 @@ public class GameSceneUIManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R)) isRecordingSignal.color = Color.black;
     }
 
+    private void HandleDialogueUI()
+    {
+        if (FileFetcher.ReadContentFromDirectory_TxtFile())
+        {
+            dialogueText_chatgpt.SetActive(true);
+            dialogueText_chatgptResponse.text = FileFetcher.GetResponseTxtContent();
+        }
+
+    }
+
     private void Update()
     {
         ToggleGamePauseUI();
         ToggleIsRecordingSignalUI();
+        HandleDialogueUI();
     }
 
 

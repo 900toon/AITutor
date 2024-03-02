@@ -3,12 +3,9 @@ using System.IO;
 
 public class GameSceneTest : MonoBehaviour
 {
-    private void Start()
-    {
-        GameSettings.LockMouse();
-    }
+    
     private void Update()
     {
-         
+        if (Input.GetKeyDown(KeyCode.T)) Debug.Log("Testing:  input test successed");
     }
 }
