@@ -7,8 +7,19 @@ from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
 from langchain_openai import ChatOpenAI
 
+#Get setup file before running:
 
+initFilePath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\Initialization.txt"
+while(True):
+    try:
+        with open(initFilePath, "r") as f:
+            print(f.read())
+            break
+    except:
+        pass
 
+#strat transfering
+print("Initializtion success")
 with open("API_Key.json") as f:
     api_key = json.load(f)["API_KEY"]
 

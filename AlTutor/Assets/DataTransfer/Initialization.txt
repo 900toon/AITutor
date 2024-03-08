@@ -1,1 +1,1 @@
-Accent mode: 1
+Accent mode: 0
