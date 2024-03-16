@@ -34,7 +34,10 @@ public class InputManager : MonoBehaviour
 
     public static bool GetRecordKeyPressed()
     {
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyUp(KeyCode.R)) return true;
+        if (GameSettings.IfPlayerInputFolderIsEmpty())
+        {
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyUp(KeyCode.R)) return true;
+        }
         return false;
     }
 

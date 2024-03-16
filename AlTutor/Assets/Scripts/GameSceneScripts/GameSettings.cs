@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameSettings : MonoBehaviour
 {
@@ -53,6 +54,19 @@ public class GameSettings : MonoBehaviour
     {
         return Application.dataPath + @"/DataTransfer/ServerOutput_Text";
     }
+    public static string GetResponseSoundDirectory()
+    {
+        return Application.dataPath + @"/DataTransfer/ServerOutput_Sound";
+    }
+    public static string GetPlayerInputDirectory()
+    {
+        return Application.dataPath + @"/DataTransfer/PlayerInput";
+    }
 
-    
+    public static bool IfPlayerInputFolderIsEmpty()
+    {
+        if (Directory.GetFiles(GetPlayerInputDirectory()).Length == 0) return true;
+
+        return false;
+    }
 }

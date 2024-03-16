@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
         LoadEveryFrame();
         HandlePlayerMovement();
+        RestrictPlayerCoordination();
         /*
         InteractDetection();
         */
@@ -63,7 +64,14 @@ public class Player : MonoBehaviour
         return new Vector2(x, y);
     }
 
-
+    private void RestrictPlayerCoordination()
+    {
+        if (transform.position.x > 26 ||
+            transform.position.x < -26 ||
+            transform.position.y > 26 ||
+            transform.position.y < -26
+            ) transform.position = new Vector3(0, 0, 0);  
+    }
     /*
     [SerializeField] private Transform objectGetRaycasted;
     private void InteractDetection()

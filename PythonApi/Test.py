@@ -14,7 +14,13 @@ while(True):
     try:
         with open(initFilePath, "r") as f:
             print(f.read())
-            break
+
+        playerInputPath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\PlayerInput"
+        for file in os.listdir(playerInputPath):
+            os.remove(playerInputPath + "\\" + file)
+    
+        break
+
     except:
         pass
 

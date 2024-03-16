@@ -1,11 +1,16 @@
 using UnityEngine;
 using System.IO;
+using System.Diagnostics;
+
 
 public class GameSceneTest : MonoBehaviour
 {
-    
-    private void Update()
+    void QuickStartPythonAPI()
     {
-        if (Input.GetKeyDown(KeyCode.T)) Debug.Log("Testing:  input test successed");
+        Process.Start(@"D:\AITutor_onUnity\AITutor\PythonApi\Test.exe");
+    }
+    private void Start()
+    {
+
     }
 }

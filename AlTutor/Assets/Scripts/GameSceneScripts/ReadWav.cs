@@ -16,11 +16,18 @@ public static class ReadWav
         }
 
         int fileSizeInByte = 0;
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read)) fileSizeInByte = (int)fileStream.Length;
+        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        {
+            fileSizeInByte = (int)fileStream.Length;
+        }
 
 
         byte[] byteArray = new byte[fileSizeInByte];
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read)) fileStream.Read(byteArray, 0, fileSizeInByte);
+        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        {
+            fileStream.Read(byteArray, 0, fileSizeInByte);
+        }
+
 
 
         header = new byte[44];
