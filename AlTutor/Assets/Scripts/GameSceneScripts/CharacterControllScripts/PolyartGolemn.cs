@@ -44,12 +44,18 @@ public class PolyartGolemn : MonoBehaviour , ICharacterMovement
     }
 
     //wandering function does not complete in interface
+    //'longestWalkingTime' and 'currentWalkingTime' trace for the longest time character walk per time
+    
+    //'walkingTimerCount' and 'walkingTimer' is the time interval between two wandering of character 
     int audioFileIndex = -1;
     int currentAudioFileIndex = -1;
     
     float walkingTimerCount = 0.0f;
     int walkingTimer = 10;
+
+    private float currentWalkingTime = 0.0f;
     Vector3 targetPosition;
+    [SerializeField] private float longestWalkingTime = 60f;
     [SerializeField] private float acceleration = 0.1f;
     public void HandleCharacterWandering()
     {
@@ -72,22 +78,31 @@ public class PolyartGolemn : MonoBehaviour , ICharacterMovement
         else if (walkingTimerCount == walkingTimer)
         {
             float distance = Vector3.Distance(transform.position, targetPosition);
-            if (distance <= 2)
+            //two condition for stop wandering :
+            //1. distance between character and the destination is less then 2
+            //2. character walking for too long that the time exceed the settings (maybe character is being blocked)
+            if (distance <= 2 || currentWalkingTime > longestWalkingTime)
             {
                 walkingTimerCount = 0.0f;
+                currentWalkingTime = 0.0f;
             }
             else
             {
+                //keep tracking how's the wandering goes
                 wanderingSpeed += acceleration * Time.deltaTime;
+                currentWalkingTime += Time.deltaTime;
                 WalkTowardPosition(targetPosition);
             } 
         }
         else
         {
+            //timer for the next wandering term
+            //decrease the speed if the character is not walking
             walkingTimerCount += Time.deltaTime;
             wanderingSpeed -= acceleration * Time.deltaTime * 10;
 
         }
+        //limit the speed and set the animator
         if (wanderingSpeed >= 1) wanderingSpeed = 1.0f;
         if (wanderingSpeed <= 0) wanderingSpeed = 0.0f;
         animator.SetFloat(WALKSPEEDFLOAT_HASH, wanderingSpeed);

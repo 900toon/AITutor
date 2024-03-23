@@ -10,9 +10,19 @@ import requests
 from pydub import utils, AudioSegment
 
 
-voiceId = "21m00Tcm4TlvDq8ikWAM"
-elevenlab_api_key="b0752bd6cbbfd443185b4b0506eaf12c"
-def TxtToMp3(voiceId, elevenlab_api_key, txtFile, fileNumber):
+voiceId_BRI = "Dag4V7ujE8O8qy3jsme9"
+voiceId_AUS = "GyGUOL7iuKmX4jvChjiF"
+voiceId_CHI ="" 
+voiceID_JP="6XNSYkDqZ1blajSVtPok"
+voiceId = voiceId_AUS
+
+key_ass="b0752bd6cbbfd443185b4b0506eaf12c"
+key_sumi="b3ef70ec97f85750c696c9d50b706a0b"
+key_kong="6b82a83d8182992771626505c13526a7"
+elevenlab_api_key = key_kong
+#Api key與voiceID掛勾，每個人都不一樣
+
+def TxtToMp3(voiceId,elevenlab_api_key, txtFile, fileNumber):
 
     Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
 
@@ -74,6 +84,22 @@ def fetch_wav_files(directory):
     return wav_files
 
 
+#pre clean the folder
+def Clean_the_files():
+    folderArray = ["D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\PlayerInput",
+                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Text",
+                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Sound",
+                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
+                   ]
+    num = 0
+
+    for folder in folderArray:
+        if (os.path.exists(folder)):
+            for file in os.listdir(folder):
+                os.remove(folderArray[num] + "\\" + file)
+                print("File deleted:  " + folderArray[num] + "\\" + file)
+        num+=1
+
 #main funciton start from here:
 
 
@@ -84,14 +110,15 @@ while(True):
         with open(initFilePath, "r") as f:
             print(f.read())
 
-        playerInputPath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\PlayerInput"
-        for file in os.listdir(playerInputPath):
-            os.remove(playerInputPath + "\\" + file)
+
+        Clean_the_files()
     
         break
 
     except:
         pass
+
+
 
 #strat transfering
 print("Initializtion success")

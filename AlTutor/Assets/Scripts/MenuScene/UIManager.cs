@@ -5,10 +5,6 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown accentDropdown;
-    void Start()
-    {
-        
-    }
 
     private void WriteInitializationDocument()
     {

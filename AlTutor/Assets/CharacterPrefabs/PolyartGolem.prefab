@@ -484,13 +484,13 @@ Transform:
   m_GameObject: {fileID: 5142354956065924468}
   m_LocalRotation: {x: 0, y: 0.83194447, z: -0, w: -0.554859}
   m_LocalPosition: {x: 14.59, y: 0, z: 2.27}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3091676482028687843}
   - {fileID: 6976911098033368110}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 247.40201, z: 0}
 --- !u!95 &4724256846754231758
 Animator:
