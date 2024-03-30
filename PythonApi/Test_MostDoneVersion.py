@@ -22,9 +22,9 @@ prompt_string = """作為貓娘，你需要遵從以下設定
 \n"""
 
 
-voiceId_BRI = "Dag4V7ujE8O8qy3jsme9"
+voiceId_BRI = "5LzOtVrtuhZCXs4eC39B"
 voiceId_AUS = "GyGUOL7iuKmX4jvChjiF"
-voiceId_CHI ="" 
+voiceId_CHI = "" 
 voiceID_JP="6XNSYkDqZ1blajSVtPok"
 voiceId = voiceId_AUS
 
@@ -67,10 +67,10 @@ def TxtToMp3_Elevenlab(voiceId,elevenlab_api_key, txtFile, fileNumber):
     return f"output{fileNumber}.mp3"
     
 
-def TxtToMpa_OpenAiTts(txtFile, fileNumber):
+def TxtToMp3_OpenAiTts(txtFile, fileNumber):
     response = client.audio.speech.create(
         model="tts-1",
-        voice="alloy",
+        voice="nova",
         input= txtFile
     )
 
@@ -133,22 +133,61 @@ def Clean_the_files():
 initFilePath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\Initialization.txt"
 Txt_To_Mp3_Api_mode = 0
 prompt_string = ""
-init_settings = {}
+init_settings = {"accentMode": 0}
+init_string = ""
 
 while(True):
-    init_string = []
+    
     try:
         with open(initFilePath, "r") as f:
-            init_string = f.read().split()
-            
-            for i in init_string:
-                print(i)
-
-        Clean_the_files()    
-        break
+            init_string = f.read()
+        
+        
+       
+        
+        
+        Clean_the_files()  
+        break  
+        
 
     except:
         pass
+
+#set initialization settings
+
+init_settings['accentMode'] = int(init_string.split()[0])
+
+            
+if (init_settings['accentMode'] == 0):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+elif (init_settings['accentMode'] == 1):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+elif (init_settings['accentMode'] == 2):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+elif (init_settings['accentMode'] == 3):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\Japenese_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+elif (init_settings['accentMode'] == 4):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\lover_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+
+
+Txt_To_Mp3_Api_mode = init_string[0]
+print("text mode:   " + Txt_To_Mp3_Api_mode)
+print("prompt string:   " +prompt_string)
 
 
 
@@ -213,11 +252,17 @@ while(True):
         #choose which api to use for converting text to sound
         if Txt_To_Mp3_Api_mode == 0:
 
+            voiceId = voiceId_AUS
             mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
 
         elif Txt_To_Mp3_Api_mode == 1:
+            
+            voiceId = voiceId_BRI
+            mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
 
-            mp3OutputFileName = TxtToMpa_OpenAiTts(output['response'], fileNumber)
+        else:
+            #using tts
+            mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber)
 
         #===================================================================================
 

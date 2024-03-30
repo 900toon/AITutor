@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private void WriteInitializationDocument()
     {
         string directoryPath = Application.dataPath + @"/DataTransfer";
-        
+
         /*
         //clean the folder
         DirectoryInfo directoryInfo = new DirectoryInfo(directoryPath);
@@ -19,9 +19,7 @@ public class UIManager : MonoBehaviour
         //write initialization txt
         using(StreamWriter writer = new StreamWriter(Path.Combine(directoryPath, "Initialization.txt")))
         {
-            writer.WriteLine($"Accent mode: {accentDropdown.value}\n"+
-                              $"Label: {accentDropdown.options[accentDropdown.value].text}"
-                               );
+            writer.WriteLine($"{accentDropdown.value}");
         }
     }
 
