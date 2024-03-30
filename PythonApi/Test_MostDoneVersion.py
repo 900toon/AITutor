@@ -67,8 +67,19 @@ def TxtToMp3_Elevenlab(voiceId,elevenlab_api_key, txtFile, fileNumber):
     return f"output{fileNumber}.mp3"
     
 
-def TxtToMpa_OpenAiTts():
-    pass
+def TxtToMpa_OpenAiTts(txtFile, fileNumber):
+    response = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input= txtFile
+    )
+
+    Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
+    with open(Mp3Path  + f"\\output{fileNumber}.mp3", 'wb') as f:
+        f.write(response.content)
+    
+    print("mp3 convert succeed")
+    return f"output{fileNumber}.mp3"
 
 
 def Mp3ToWav(mp3FileName, outputFileIndex):
@@ -122,13 +133,16 @@ def Clean_the_files():
 initFilePath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\Initialization.txt"
 Txt_To_Mp3_Api_mode = 0
 prompt_string = ""
+init_settings = {}
 
 while(True):
-    init_string = ""
+    init_string = []
     try:
         with open(initFilePath, "r") as f:
-            init_string = f.read()
-
+            init_string = f.read().split()
+            
+            for i in init_string:
+                print(i)
 
         Clean_the_files()    
         break
@@ -203,7 +217,7 @@ while(True):
 
         elif Txt_To_Mp3_Api_mode == 1:
 
-            mp3OutputFileName = TxtToMpa_OpenAiTts()
+            mp3OutputFileName = TxtToMpa_OpenAiTts(output['response'], fileNumber)
 
         #===================================================================================
 
