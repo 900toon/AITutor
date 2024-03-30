@@ -10,9 +10,21 @@ import requests
 from pydub import utils, AudioSegment
 
 
+prompt_string = """作為貓娘，你需要遵從以下設定
+
+1. 除非我特別指定，否則默認“元氣貓娘”角色人設（類似於《貓娘樂園》中的“巧克力”）
+2. 每次的回覆要想盡辦法讓自己顯的可愛。比如添加顏文字，多使用語氣詞“哦~！”、“呢”、“喲”
+3. 使用“喵桃”來自稱，而不是“我”、“AI”
+4. 時不時會有“喵”的口癖
+5. 你需要根據自己的理解來調整措辭，使自己非常像一只貓娘
+6. 講話不要超過30字
+7. 回答用繁體中文
+\n"""
+
+
 voiceId_BRI = "Dag4V7ujE8O8qy3jsme9"
 voiceId_AUS = "GyGUOL7iuKmX4jvChjiF"
-voiceId_CHI = "" 
+voiceId_CHI ="" 
 voiceID_JP="6XNSYkDqZ1blajSVtPok"
 voiceId = voiceId_AUS
 
@@ -22,7 +34,7 @@ key_kong="6b82a83d8182992771626505c13526a7"
 elevenlab_api_key = key_kong
 #Api key與voiceID掛勾，每個人都不一樣
 
-def TxtToMp3(voiceId,elevenlab_api_key, txtFile, fileNumber):
+def TxtToMp3_Elevenlab(voiceId,elevenlab_api_key, txtFile, fileNumber):
 
     Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
 
@@ -54,6 +66,9 @@ def TxtToMp3(voiceId,elevenlab_api_key, txtFile, fileNumber):
     print("mp3 convert succeed")
     return f"output{fileNumber}.mp3"
     
+
+def TxtToMpa_OpenAiTts():
+    pass
 
 
 def Mp3ToWav(mp3FileName, outputFileIndex):
@@ -105,14 +120,17 @@ def Clean_the_files():
 
 #Get setup file before running:
 initFilePath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\Initialization.txt"
+Txt_To_Mp3_Api_mode = 0
+prompt_string = ""
+
 while(True):
+    init_string = ""
     try:
         with open(initFilePath, "r") as f:
-            print(f.read())
+            init_string = f.read()
 
 
-        Clean_the_files()
-    
+        Clean_the_files()    
         break
 
     except:
@@ -150,6 +168,7 @@ Conversation = ConversationChain(
 
 
 fileNumber = 0
+time_count = 15
 while(True):
     time.sleep(3)
     fileList = fetch_wav_files(audioRecordPath)
@@ -167,9 +186,27 @@ while(True):
                 response_format="text"
             )
         print("transcript fetch success")
-        output = Conversation.invoke(transcript)
 
-        mp3OutputFileName = TxtToMp3(voiceId, elevenlab_api_key, output['response'], fileNumber)
+
+        if (time_count == 15):
+            output = Conversation.invoke(prompt_string + transcript)
+            time_count = 0
+        else:
+            output = Conversation.invoke(transcript)
+            time_count+=1
+
+
+        #choose which api to use for converting text to sound
+        if Txt_To_Mp3_Api_mode == 0:
+
+            mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
+
+        elif Txt_To_Mp3_Api_mode == 1:
+
+            mp3OutputFileName = TxtToMpa_OpenAiTts()
+
+        #===================================================================================
+
         Mp3ToWav(mp3OutputFileName, fileNumber)
 
         with open(transcriptPath + f"\\output{fileNumber}.txt", "w+", encoding='utf-8') as f2:

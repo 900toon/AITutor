@@ -1,1 +1,2 @@
-Accent mode: 0
+Accent mode: 2
+Label: English (American)

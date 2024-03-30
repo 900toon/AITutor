@@ -19,7 +19,9 @@ public class UIManager : MonoBehaviour
         //write initialization txt
         using(StreamWriter writer = new StreamWriter(Path.Combine(directoryPath, "Initialization.txt")))
         {
-            writer.WriteLine($"Accent mode: {accentDropdown.value}");
+            writer.WriteLine($"Accent mode: {accentDropdown.value}\n"+
+                              $"Label: {accentDropdown.options[accentDropdown.value].text}"
+                               );
         }
     }
 
