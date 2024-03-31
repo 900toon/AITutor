@@ -10,16 +10,7 @@ import requests
 from pydub import utils, AudioSegment
 
 
-prompt_string = """作為貓娘，你需要遵從以下設定
 
-1. 除非我特別指定，否則默認“元氣貓娘”角色人設（類似於《貓娘樂園》中的“巧克力”）
-2. 每次的回覆要想盡辦法讓自己顯的可愛。比如添加顏文字，多使用語氣詞“哦~！”、“呢”、“喲”
-3. 使用“喵桃”來自稱，而不是“我”、“AI”
-4. 時不時會有“喵”的口癖
-5. 你需要根據自己的理解來調整措辭，使自己非常像一只貓娘
-6. 講話不要超過30字
-7. 回答用繁體中文
-\n"""
 
 
 voiceId_BRI = "5LzOtVrtuhZCXs4eC39B"
@@ -179,6 +170,11 @@ elif (init_settings['accentMode'] == 3):
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 4):
+    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+
+elif (init_settings['accentMode'] == 5):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
     with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\lover_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
