@@ -236,7 +236,7 @@ while(True):
             )
         print("transcript fetch success")
 
-
+        #refresh the prompt every 15 inputs
         if (time_count == 15):
             output = Conversation.invoke(prompt_string + transcript)
             time_count = 0
