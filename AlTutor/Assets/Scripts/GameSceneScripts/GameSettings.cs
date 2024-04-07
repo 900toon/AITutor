@@ -69,4 +69,18 @@ public class GameSettings : MonoBehaviour
 
         return false;
     }
+
+    //choose which character to load due to the selection from initialization
+    private static int CharacterSelected = 0;
+    public static void SelectCharacter(int i)
+    {
+        //0 for man (default)
+        //1 for female
+        CharacterSelected = i;
+    } 
+
+    public static int GetCharacterSelected()
+    {
+        return CharacterSelected;
+    }
 }

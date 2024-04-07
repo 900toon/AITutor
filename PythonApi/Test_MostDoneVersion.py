@@ -8,8 +8,11 @@ from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMP
 from langchain_openai import ChatOpenAI
 import requests
 from pydub import utils, AudioSegment
+import pathlib
 
 
+common_path = pathlib.Path().absolute().parents[0].as_posix() + "/AlTutor/Assets/DataTransfer"
+common_path_prompts = pathlib.Path().absolute().as_posix() + "/Prompts"
 
 
 
@@ -27,7 +30,7 @@ elevenlab_api_key = key_kong
 
 def TxtToMp3_Elevenlab(voiceId,elevenlab_api_key, txtFile, fileNumber):
 
-    Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
+    Mp3Path = f"{common_path}\\TempMp3ToWav"
 
 
     CHUNK_SIZE = 1024
@@ -65,7 +68,7 @@ def TxtToMp3_OpenAiTts(txtFile, fileNumber):
         input= txtFile
     )
 
-    Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
+    Mp3Path = f"{common_path}\\TempMp3ToWav"
     with open(Mp3Path  + f"\\output{fileNumber}.mp3", 'wb') as f:
         f.write(response.content)
     
@@ -74,8 +77,8 @@ def TxtToMp3_OpenAiTts(txtFile, fileNumber):
 
 
 def Mp3ToWav(mp3FileName, outputFileIndex):
-    Mp3Path = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
-    OutputPath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Sound"
+    Mp3Path = f"{common_path}\\TempMp3ToWav"
+    OutputPath = f"{common_path}\\ServerOutput_Sound"
 
     def get_prober_name():
         return "bin/ffprobe.exe"
@@ -103,10 +106,10 @@ def fetch_wav_files(directory):
 
 #pre clean the folder
 def Clean_the_files():
-    folderArray = ["D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\PlayerInput",
-                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Text",
-                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Sound",
-                   "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\TempMp3ToWav"
+    folderArray = [f"{common_path}\\PlayerInput",
+                   f"{common_path}\\ServerOutput_Text",
+                   f"{common_path}\\ServerOutput_Sound",
+                   f"{common_path}\\TempMp3ToWav"
                    ]
     num = 0
 
@@ -121,22 +124,18 @@ def Clean_the_files():
 
 
 #Get setup file before running:
-initFilePath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\Initialization.txt"
+initFilePath = f"{common_path}/Initialization.txt"
 Txt_To_Mp3_Api_mode = 0
 prompt_string = ""
 init_settings = {"accentMode": 0}
 init_string = ""
 
+print("initfilepath: "+ initFilePath)
 while(True):
     
     try:
         with open(initFilePath, "r") as f:
             init_string = f.read()
-        
-        
-       
-        
-        
         Clean_the_files()  
         break  
         
@@ -144,39 +143,40 @@ while(True):
     except:
         pass
 
-#set initialization settings
 
+print(init_string)
+#set initialization settings
 init_settings['accentMode'] = int(init_string.split()[0])
 
             
 if (init_settings['accentMode'] == 0):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 1):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 2):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 3):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\Japenese_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\Japenese_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 4):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\English_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 elif (init_settings['accentMode'] == 5):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open("D:\\AITutor_onUnity\\AITutor\\PythonApi\\Prompts\\lover_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\lover_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 
 
@@ -196,7 +196,7 @@ os.environ['OPENAI_API_KEY'] = api_key
 
 client = OpenAI(api_key=api_key)
 
-audioRecordPath =  "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\PlayerInput"
+audioRecordPath =  f"{common_path}\\PlayerInput"
 fileList = os.listdir(audioRecordPath)
 
 
@@ -225,7 +225,7 @@ while(True):
         print("nothing in file list............")
         continue
     else:
-        transcriptPath = "D:\\AITutor_onUnity\\AITutor\\AlTutor\\Assets\\DataTransfer\\ServerOutput_Text"
+        transcriptPath = f"{common_path}\\ServerOutput_Text"
         with open(audioRecordPath + f"\\{fileList[0]}", "rb") as f:
             print(f"wavfile fetch success: {fileList[0]}")
 

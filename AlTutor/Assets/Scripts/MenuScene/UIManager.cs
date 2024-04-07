@@ -22,14 +22,19 @@ public class UIManager : MonoBehaviour
             writer.WriteLine($"{accentDropdown.value}");
         }
     }
+    private void SelectCharacters()
+    {
+        if (accentDropdown.value == 0) GameSettings.SelectCharacter(1);
+        else GameSettings.SelectCharacter(0);
 
+    }
     //buttons
     //start button
     public void StartButton()
     {
-        GameSettings.LoadGameScene();
         WriteInitializationDocument();
-    
+        SelectCharacters();
+        GameSettings.LoadGameScene();
     }
 
     public void QuitButton()
