@@ -127,85 +127,57 @@ def Clean_the_files():
 initFilePath = f"{common_path}/Initialization.txt"
 Txt_To_Mp3_Api_mode = 0
 prompt_string = ""
-init_settings = {"accentMode": 0, "loverMode" : False}
+init_settings = {"accentMode": 0, "loverMode" : 0}
 init_string = ""
 
 print("initfilepath: "+ initFilePath)
 while(True):
-    
     try:     
         with open(initFilePath, "r") as f:
             init_string = f.read()
             
-        Clean_the_files()  
-        break  
         
-
+        if (len(init_string) > 1):
+            Clean_the_files()  
+            break
+        
     except:
         pass
 
+print("Stage1: InitFile Get succeed==================================================================================")
 
-for i in init_string.split():
-    print(i)
-#set initialization settings
+#set initialization settings----------------------------------------------------------------------
 init_settings['accentMode'] = int(init_string.split()[1])
+init_settings['loverMode'] = int(init_string.split()[3])
+#--------------------------------------------------------------------------------------------------
 
 
-#choose the prompt            
-if (init_settings['accentMode'] == 0):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
-        prompt_string = f2.read()
+#choose the prompt & which voice converter is using----------------------------------------------------------------        
+Txt_To_Mp3_Api_mode = init_settings['accentMode']
 
-elif (init_settings['accentMode'] == 1):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
-        prompt_string = f2.read()
-
-elif (init_settings['accentMode'] == 2):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
-        prompt_string = f2.read()
-
-elif (init_settings['accentMode'] == 3):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open(f"{common_path_prompts}\\Japenese_prompt.txt", "r", encoding="utf-8") as f2:
-        prompt_string = f2.read()
-
-elif (init_settings['accentMode'] == 4):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
-    with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
-        prompt_string = f2.read()
-
-elif (init_settings['accentMode'] == 5):
-    Txt_To_Mp3_Api_mode = init_settings['accentMode']
+if (init_settings['loverMode'] == 1):
     with open(f"{common_path_prompts}\\lover_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
-
-
-#temp testing----------------------
-with open(f"{common_path_prompts}\\lover_prompt.txt", "r", encoding="utf-8") as f2:
+else:
+    with open(f"{common_path_prompts}\\English_Teacher_prompt.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
-#-------------------------------------
+#-------------------------------------------------------------------------------------------------------
 
+print(f"text mode(using tts or elevenlab):  {Txt_To_Mp3_Api_mode}")
+print("prompt string:   " + prompt_string)
+print("Stage2: Voice and prompts setting succeed=====================================================================")
 
-print("text mode:   " + Txt_To_Mp3_Api_mode)
-print("prompt string:   " +prompt_string)
 
 
 
 #strat transfering
-print("Initializtion success")
+#ChatGpt, langchain API setup-----------------------------------------------------------------------------
 with open("API_Key.json") as f:
     api_key = json.load(f)["API_KEY"]
 
 os.environ['OPENAI_API_KEY'] = api_key
 
 client = OpenAI(api_key=api_key)
-
-audioRecordPath =  f"{common_path}\\PlayerInput"
-fileList = os.listdir(audioRecordPath)
-
 
 llm = ChatOpenAI(
     openai_api_key = api_key,
@@ -220,8 +192,16 @@ Conversation = ConversationChain(
     prompt = ENTITY_MEMORY_CONVERSATION_TEMPLATE,
     memory = temp
 )   
+print("Stage3: API setup succeed=====================================================================================")
+#---------------------------------------------------------------------------------------------------------
+#Send initialization prompt to langchain------------------------------------------------------------------
+Conversation.invoke(prompt_string)
 
+print("Stage4: First prompt sending succeed==========================================================================")
+#-----------------------------------------------------------------------------------------------------------
 
+audioRecordPath =  f"{common_path}\\PlayerInput"
+fileList = os.listdir(audioRecordPath)
 
 fileNumber = 0
 time_count = 15
@@ -265,10 +245,7 @@ while(True):
 
         else:
             #using tts
-            #force to run
-            # voiceId = voiceId_AUS
-            # mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
-            #===================================================================================================
+            
             mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber)
 
         #===================================================================================

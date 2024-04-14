@@ -1,2 +1,2 @@
-accent: 1
+accent: 2
 loverMode: 0
