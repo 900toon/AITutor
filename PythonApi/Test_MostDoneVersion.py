@@ -20,7 +20,7 @@ voiceId_BRI = "5LzOtVrtuhZCXs4eC39B"
 voiceId_AUS = "GyGUOL7iuKmX4jvChjiF"
 voiceId_CHI = "" 
 voiceID_JP="6XNSYkDqZ1blajSVtPok"
-voiceId = voiceId_AUS
+voiceId = ""
 
 key_ass="b0752bd6cbbfd443185b4b0506eaf12c"
 key_sumi="b3ef70ec97f85750c696c9d50b706a0b"
@@ -127,15 +127,16 @@ def Clean_the_files():
 initFilePath = f"{common_path}/Initialization.txt"
 Txt_To_Mp3_Api_mode = 0
 prompt_string = ""
-init_settings = {"accentMode": 0}
+init_settings = {"accentMode": 0, "loverMode" : False}
 init_string = ""
 
 print("initfilepath: "+ initFilePath)
 while(True):
     
-    try:
+    try:     
         with open(initFilePath, "r") as f:
             init_string = f.read()
+            
         Clean_the_files()  
         break  
         
@@ -144,11 +145,13 @@ while(True):
         pass
 
 
-print(init_string)
+for i in init_string.split():
+    print(i)
 #set initialization settings
-init_settings['accentMode'] = int(init_string.split()[0])
+init_settings['accentMode'] = int(init_string.split()[1])
 
-            
+
+#choose the prompt            
 if (init_settings['accentMode'] == 0):
     Txt_To_Mp3_Api_mode = init_settings['accentMode']
     with open(f"{common_path_prompts}\\English_prompt.txt", "r", encoding="utf-8") as f2:
@@ -180,8 +183,12 @@ elif (init_settings['accentMode'] == 5):
         prompt_string = f2.read()
 
 
+#temp testing----------------------
+with open(f"{common_path_prompts}\\lover_prompt.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+#-------------------------------------
 
-Txt_To_Mp3_Api_mode = init_string[0]
+
 print("text mode:   " + Txt_To_Mp3_Api_mode)
 print("prompt string:   " +prompt_string)
 
@@ -258,6 +265,10 @@ while(True):
 
         else:
             #using tts
+            #force to run
+            # voiceId = voiceId_AUS
+            # mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
+            #===================================================================================================
             mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber)
 
         #===================================================================================

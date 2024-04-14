@@ -314,14 +314,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24205192}
-  m_LocalRotation: {x: -0.9587634, y: -0.018356515, z: -0.27637038, w: 0.06368104}
+  m_LocalRotation: {x: 0, y: -0.58141315, z: 0, w: 0.81360847}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -172.4, y: -32.16, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -71.1, z: 0}
 --- !u!1 &55804318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,6 +3689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: angGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 7711775012181709749, guid: e3aeb3ca403ea6d4e802cbbfe2dd6716, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4203,6 +4207,10 @@ PrefabInstance:
     - target: {fileID: 1327099040372120087, guid: 2604b2e31f307c749a4c73485da1ded1, type: 3}
       propertyPath: m_Name
       value: HumanMale
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327099040372120087, guid: 2604b2e31f307c749a4c73485da1ded1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6865802830301940404, guid: 2604b2e31f307c749a4c73485da1ded1, type: 3}
       propertyPath: m_RootOrder

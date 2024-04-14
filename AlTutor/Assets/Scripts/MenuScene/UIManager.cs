@@ -1,30 +1,30 @@
 using System.IO;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown accentDropdown;
+    [SerializeField] private TMP_Dropdown characterDropdown;
+    [SerializeField] private Toggle loverModeToggle;
 
     private void WriteInitializationDocument()
     {
         string directoryPath = Application.dataPath + @"/DataTransfer";
+        int loverModeToggleValue = 0;
 
-        /*
-        //clean the folder
-        DirectoryInfo directoryInfo = new DirectoryInfo(directoryPath);
-        foreach(FileInfo file in directoryInfo.GetFiles())  file.Delete();
-        */
-
+        if (loverModeToggle.isOn) loverModeToggleValue = 1;
         //write initialization txt
         using(StreamWriter writer = new StreamWriter(Path.Combine(directoryPath, "Initialization.txt")))
         {
-            writer.WriteLine($"{accentDropdown.value}");
+            writer.WriteLine($"accent: {accentDropdown.value}");
+            writer.WriteLine($"loverMode: {loverModeToggleValue}");
         }
     }
     private void SelectCharacters()
     {
-        if (accentDropdown.value == 0) GameSettings.SelectCharacter(1);
+        if (characterDropdown.value == 0) GameSettings.SelectCharacter(1);
         else GameSettings.SelectCharacter(0);
 
     }
