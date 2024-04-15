@@ -324,9 +324,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: English (Australian)
+    - m_Text: English (Australian Female)
       m_Image: {fileID: 0}
-    - m_Text: English (British)
+    - m_Text: English (British Female)
+      m_Image: {fileID: 0}
+    - m_Text: English (British Male)
       m_Image: {fileID: 0}
     - m_Text: English (American)
       m_Image: {fileID: 0}
@@ -1020,9 +1022,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: DarkLolitaGirl
       m_Image: {fileID: 0}
-    - m_Text: English (American)
-      m_Image: {fileID: 0}
     - m_Text: KisoraChan (female)
+      m_Image: {fileID: 0}
+    - m_Text: anotherAnimateGril
       m_Image: {fileID: 0}
     - m_Text: PinkShirtGuy (male)
       m_Image: {fileID: 0}
@@ -1126,7 +1128,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English (Australian)
+  m_text: English (Australian Female)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

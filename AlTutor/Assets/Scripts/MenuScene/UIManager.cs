@@ -24,9 +24,7 @@ public class UIManager : MonoBehaviour
     }
     private void SelectCharacters()
     {
-        if (characterDropdown.value == 0) GameSettings.SelectCharacter(1);
-        else GameSettings.SelectCharacter(0);
-
+        GameSettings.SelectCharacter(characterDropdown.value);
     }
     //buttons
     //start button

@@ -15,9 +15,11 @@ common_path = pathlib.Path().absolute().parents[0].as_posix() + "/AlTutor/Assets
 common_path_prompts = pathlib.Path().absolute().as_posix() + "/Prompts"
 
 
+voiceId_AUS_Female = "GyGUOL7iuKmX4jvChjiF"
+# voiceId_AUS_Male = "" (reach maximum api usage)
+voiceId_BRI_Female = "GYCXkDNMg7joTQitC0WM"
+voiceId_BRI_Male = "5LzOtVrtuhZCXs4eC39B"
 
-voiceId_BRI = "5LzOtVrtuhZCXs4eC39B"
-voiceId_AUS = "GyGUOL7iuKmX4jvChjiF"
 voiceId_CHI = "" 
 voiceID_JP="6XNSYkDqZ1blajSVtPok"
 voiceId = ""
@@ -235,17 +237,21 @@ while(True):
         #choose which api to use for converting text to sound
         if Txt_To_Mp3_Api_mode == 0:
 
-            voiceId = voiceId_AUS
+            voiceId = voiceId_AUS_Female
             mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
 
         elif Txt_To_Mp3_Api_mode == 1:
             
-            voiceId = voiceId_BRI
+            voiceId = voiceId_BRI_Female
+            mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
+
+        elif Txt_To_Mp3_Api_mode == 2:
+            
+            voiceId = voiceId_BRI_Male
             mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
 
         else:
             #using tts
-            
             mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber)
 
         #===================================================================================
