@@ -1,9 +1,9 @@
-using System.IO;
-using UnityEngine;
 
-public class KisoraChan : MonoBehaviour
+using UnityEngine;
+using System.IO;
+
+public class MuryoTaisu_ver2 : MonoBehaviour, ICharacterMovement
 {
-    [SerializeField] private float MovementSpeedBoost = 3f;
     public Animator animator { get; set; }
     public AudioSource audioSource;
     public float wanderingSpeed { get; set; }
@@ -17,14 +17,14 @@ public class KisoraChan : MonoBehaviour
     }
     public void WalkTowardPosition(Vector3 targerPosition)
     {
-        float speedBootingConstant = 2.0f;
+        float speedBootingConstant = 4.0f;
         Vector3 newVector = targerPosition - transform.position;
         transform.forward = newVector;
-        transform.position += wanderingSpeed * MovementSpeedBoost * Time.deltaTime * newVector.normalized * speedBootingConstant;
-
+        transform.position += wanderingSpeed * Time.deltaTime * newVector.normalized * speedBootingConstant;
+        animator.SetBool("isWalking", true);
     }
 
-    private string[] animationArray = new string[3] { "Hit01Trigger", "JumpTrigger", "WinposeTrigger" };
+    private string[] animationArray = new string[4] { "JumpTrigger", "SmileTrigger","TroubleTrigger","IdleBTrigger" };
     public void HandleCharacterAnimation()
     {
         string animationMovementSelect = "";
@@ -35,22 +35,25 @@ public class KisoraChan : MonoBehaviour
         catch { }
         if (currentAnimationMovementIndex != FileFetcher.GetCurrentFileIndex())
         {
-            if (animationMovementSelect == "1") animator.SetTrigger(animationArray[0]);
-            else if (animationMovementSelect == "2") animator.SetTrigger(animationArray[1]);
-            else if (animationMovementSelect == "3") animator.SetTrigger(animationArray[2]);
-            else animator.SetTrigger(animationArray[Random.Range(0, 2)]);
+            animator.SetTrigger(animationArray[Random.Range(0,4)]);
             LookTowardPlayer();
             currentAnimationMovementIndex = FileFetcher.GetCurrentFileIndex();
         }
     }
 
     //wandering function does not complete in interface
+    //'longestWalkingTime' and 'currentWalkingTime' trace for the longest time character walk per time
+
+    //'walkingTimerCount' and 'walkingTimer' is the time interval between two wandering of character 
     int audioFileIndex = -1;
     int currentAudioFileIndex = -1;
 
     float walkingTimerCount = 0.0f;
-    int walkingTimer = 10;
+    int walkingTimer = 20;
+
+    private float currentWalkingTime = 0.0f;
     Vector3 targetPosition;
+    [SerializeField] private float longestWalkingTime = 20f;
     [SerializeField] private float acceleration = 0.1f;
     public void HandleCharacterWandering()
     {
@@ -59,7 +62,7 @@ public class KisoraChan : MonoBehaviour
         {
             currentAudioFileIndex = audioFileIndex;
 
-            walkingTimerCount = -20.0f;
+            walkingTimerCount = -40.0f;
             LookTowardPlayer();
         }
         //set condition for character wandering while not talking
@@ -73,25 +76,34 @@ public class KisoraChan : MonoBehaviour
         else if (walkingTimerCount == walkingTimer)
         {
             float distance = Vector3.Distance(transform.position, targetPosition);
-            if (distance <= 2)
+            //two condition for stop wandering :
+            //1. distance between character and the destination is less then 2
+            //2. character walking for too long that the time exceed the settings (maybe character is being blocked)
+            if (distance <= 2 || currentWalkingTime > longestWalkingTime)
             {
                 walkingTimerCount = 0.0f;
+                currentWalkingTime = 0.0f;
+                animator.SetBool("isWalking", false);
             }
             else
             {
+                //keep tracking how's the wandering goes
                 wanderingSpeed += acceleration * Time.deltaTime;
+                currentWalkingTime += Time.deltaTime;
                 WalkTowardPosition(targetPosition);
             }
         }
         else
         {
+            //timer for the next wandering term
+            //decrease the speed if the character is not walking
             walkingTimerCount += Time.deltaTime;
-            wanderingSpeed -= acceleration * Time.deltaTime * 10 * MovementSpeedBoost;
+            wanderingSpeed -= acceleration * Time.deltaTime * 10;
 
         }
+        //limit the speed and set the animator
         if (wanderingSpeed >= 1) wanderingSpeed = 1.0f;
         if (wanderingSpeed <= 0) wanderingSpeed = 0.0f;
-        animator.SetFloat(WALKSPEEDFLOAT_HASH, wanderingSpeed);
     }
 
     //wandering function is undone
