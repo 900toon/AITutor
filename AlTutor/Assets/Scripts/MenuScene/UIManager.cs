@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown accentDropdown;
     [SerializeField] private TMP_Dropdown characterDropdown;
+    [SerializeField] private TMP_Dropdown environmentDropdown;
     [SerializeField] private Toggle loverModeToggle;
 
     private void WriteInitializationDocument()
@@ -26,12 +27,18 @@ public class UIManager : MonoBehaviour
     {
         GameSettings.SelectCharacter(characterDropdown.value);
     }
+    private void SelectEnvironment()
+    {
+        GameSettings.SelectEnvironment(environmentDropdown.value);
+
+    }
     //buttons
     //start button
     public void StartButton()
     {
         WriteInitializationDocument();
         SelectCharacters();
+        SelectEnvironment();
         GameSettings.LoadGameScene();
     }
 

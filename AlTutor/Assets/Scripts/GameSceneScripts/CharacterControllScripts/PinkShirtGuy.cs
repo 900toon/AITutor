@@ -88,7 +88,8 @@ public class PinkShirtGuy : MonoBehaviour, ICharacterMovement
             else
             {
                 //keep tracking how's the wandering goes
-                wanderingSpeed += acceleration * Time.deltaTime;
+                float wanderingSpeedBoost = 0.5f;
+                wanderingSpeed += acceleration * Time.deltaTime * wanderingSpeedBoost;
                 currentWalkingTime += Time.deltaTime;
                 WalkTowardPosition(targetPosition);
             }

@@ -74,13 +74,25 @@ public class GameSettings : MonoBehaviour
     private static int CharacterSelected = 0;
     public static void SelectCharacter(int i)
     {
-        //0 for man (default)
-        //1 for female
         CharacterSelected = i;
     } 
 
     public static int GetCharacterSelected()
     {
         return CharacterSelected;
+    }
+
+    //choose which environment is going to be loaded
+    private static int EnvironmentSelected = 0;
+
+    public static void SelectEnvironment(int i)
+    {
+        //0 for space chamber
+        //1 for pixel medieval room
+        EnvironmentSelected = i;
+    }
+    public static int GetEnvironmentSelected()
+    {
+        return EnvironmentSelected;
     }
 }
