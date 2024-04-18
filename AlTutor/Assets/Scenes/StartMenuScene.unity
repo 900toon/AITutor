@@ -527,9 +527,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: English (British Male)
       m_Image: {fileID: 0}
-    - m_Text: English (American)
+    - m_Text: English (Default male)
       m_Image: {fileID: 0}
-    - m_Text: Japanese
+    - m_Text: English (Default female)
       m_Image: {fileID: 0}
     - m_Text: Chinese/English (Hongkong)
       m_Image: {fileID: 0}

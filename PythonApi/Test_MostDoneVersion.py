@@ -63,10 +63,10 @@ def TxtToMp3_Elevenlab(voiceId,elevenlab_api_key, txtFile, fileNumber):
     return f"output{fileNumber}.mp3"
     
 
-def TxtToMp3_OpenAiTts(txtFile, fileNumber):
+def TxtToMp3_OpenAiTts(txtFile, fileNumber, voiceId):
     response = client.audio.speech.create(
         model="tts-1",
-        voice="nova",
+        voice= voiceId,
         input= txtFile
     )
 
@@ -250,9 +250,13 @@ while(True):
             voiceId = voiceId_BRI_Male
             mp3OutputFileName = TxtToMp3_Elevenlab(voiceId, elevenlab_api_key, output['response'], fileNumber)
 
+        #using tts
+        elif Txt_To_Mp3_Api_mode == 3:
+            mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber, 'alloy')
+
         else:
-            #using tts
-            mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber)
+            mp3OutputFileName = TxtToMp3_OpenAiTts(output['response'], fileNumber, 'nova')
+
 
         #===================================================================================
 
