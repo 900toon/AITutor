@@ -1,2 +1,0 @@
-accent: 4
-loverMode: 1

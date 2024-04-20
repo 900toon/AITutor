@@ -10,10 +10,12 @@ import requests
 from pydub import utils, AudioSegment
 import pathlib
 
-
-common_path = pathlib.Path().absolute().parents[0].as_posix() + "/AlTutor/Assets/DataTransfer"
-common_path_prompts = pathlib.Path().absolute().as_posix() + "/Prompts"
-
+#pathlib.path().absolute() = where the bat file runs
+#due to some mis-spell this project is literally called "A1Tutor" at least for the "A1Tutor_Data" that part
+common_path = pathlib.Path().absolute().as_posix() + "/GameItself/AlTutor_Data/DataTransfer"
+common_path_prompts = pathlib.Path().absolute().as_posix() + "/GameItself/PythonApi/Prompts"
+api_key_json_path = pathlib.Path().absolute().as_posix() + "/GameItself/PythonApi/API_Key.json"
+ffmpeg_path = pathlib.Path().absolute().as_posix() + "/GameItself/PythonApi/bin"
 
 voiceId_AUS_Female = "GyGUOL7iuKmX4jvChjiF"
 # voiceId_AUS_Male = "" (reach maximum api usage)
@@ -83,9 +85,9 @@ def Mp3ToWav(mp3FileName, outputFileIndex):
     OutputPath = f"{common_path}\\ServerOutput_Sound"
 
     def get_prober_name():
-        return "bin/ffprobe.exe"
+        return ffmpeg_path+"/ffprobe.exe"
             
-    AudioSegment.converter = "bin/ffmpeg.exe"
+    AudioSegment.converter = ffmpeg_path+"/ffmpeg.exe"
     utils.get_prober_name = get_prober_name
 
     print(OutputPath + f"\\output{outputFileIndex}.wav")
@@ -132,6 +134,7 @@ prompt_string = ""
 init_settings = {"accentMode": 0, "loverMode" : 0}
 init_string = ""
 
+print("promptPath: "+ common_path_prompts)
 print("initfilepath: "+ initFilePath)
 while(True):
     try:     
@@ -145,6 +148,7 @@ while(True):
         
     except:
         pass
+
 
 os.remove(initFilePath)
 print("Stage1: InitFile Get succeed==================================================================================")
@@ -175,7 +179,7 @@ print("Stage2: Voice and prompts setting succeed================================
 
 #strat transfering
 #ChatGpt, langchain API setup-----------------------------------------------------------------------------
-with open("API_Key.json") as f:
+with open(api_key_json_path) as f:
     api_key = json.load(f)["API_KEY"]
 
 os.environ['OPENAI_API_KEY'] = api_key

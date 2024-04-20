@@ -10,9 +10,11 @@ import requests
 from pydub import utils, AudioSegment
 import pathlib
 
-
-common_path = pathlib.Path().absolute().parents[0].as_posix() + "/AlTutor/Assets/DataTransfer"
+#pathlib.path().absolute() = where the bat file runs
+#due to some mis-spell this project is literally called "A1Tutor" at least for the "A1Tutor_Data" that part
+common_path = pathlib.Path().absolute().parents[0].as_posix() + "/AlTutor_Data/DataTransfer"
 common_path_prompts = pathlib.Path().absolute().as_posix() + "/Prompts"
+
 
 
 voiceId_AUS_Female = "GyGUOL7iuKmX4jvChjiF"
@@ -132,6 +134,7 @@ prompt_string = ""
 init_settings = {"accentMode": 0, "loverMode" : 0}
 init_string = ""
 
+print("promptPath: "+ common_path_prompts)
 print("initfilepath: "+ initFilePath)
 while(True):
     try:     
@@ -145,6 +148,7 @@ while(True):
         
     except:
         pass
+
 
 os.remove(initFilePath)
 print("Stage1: InitFile Get succeed==================================================================================")
