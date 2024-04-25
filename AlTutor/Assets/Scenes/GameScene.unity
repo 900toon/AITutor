@@ -3388,6 +3388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1748747461}
   - component: {fileID: 1748747462}
+  - component: {fileID: 1748747463}
   m_Layer: 0
   m_Name: GameSceneLoader
   m_TagString: Untagged
@@ -3431,6 +3432,18 @@ MonoBehaviour:
   EnvironmentPrefabs:
   - {fileID: 4951131816283807616, guid: 99a23e758d7e5dc4c91c760488b3a114, type: 3}
   - {fileID: 5281898201257057278, guid: 47c7c0511d345b84a9860aa5244aa4ef, type: 3}
+--- !u!114 &1748747463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748747460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db381455a07b4a94889a5a69ebf9646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1856128550
 GameObject:
   m_ObjectHideFlags: 0
