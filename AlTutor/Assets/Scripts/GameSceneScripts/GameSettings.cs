@@ -95,4 +95,15 @@ public class GameSettings : MonoBehaviour
     {
         return EnvironmentSelected;
     }
+
+    //switch between vr and pc mode
+    private static int GameInputMode = 0;
+    public static void SetGameInputMode(int mode)
+    {
+        GameInputMode = mode;
+    }
+    public static int GetGameInputMode()
+    {
+        return GameInputMode;
+    }
 }

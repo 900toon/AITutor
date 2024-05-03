@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     private FirstPersonCamera firstPersonCamera;
+    [SerializeField] private GameObject vrCameraObject;
+
     [SerializeField] private float moveSpeed = 10f;
 
     [SerializeField] private GameObject handPosition;
@@ -37,10 +39,23 @@ public class Player : MonoBehaviour
         firstPersonCamera = transform.Find("PlayerFirstPersonCamera").GetComponent<FirstPersonCamera>();
     }
 
+    private Vector3 GetCameraForward()
+    {
+        Vector3 forwardDir = new Vector3(0, 0, 0);
+        if (GameSettings.GetGameInputMode() == 0)
+        {
+            forwardDir = firstPersonCamera.GetCameraForward();
+        }
+        else
+        {
+            forwardDir = vrCameraObject.transform.forward;
+        }
 
+        return forwardDir;
+    }
     private void HandlePlayerMovement()
     {
-        Vector3 cameraForwardDirection = firstPersonCamera.GetCameraForward();
+        Vector3 cameraForwardDirection = GetCameraForward();
         Vector2 inputDirection = InputManager.GetMovementInput();
 
         //longitudinal movement

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown characterDropdown;
     [SerializeField] private TMP_Dropdown environmentDropdown;
     [SerializeField] private Toggle loverModeToggle;
+    [SerializeField] private Toggle vrModeToggle;
 
     private void WriteInitializationDocument()
     {
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
         int loverModeToggleValue = 0;
 
         if (loverModeToggle.isOn) loverModeToggleValue = 1;
+        else loverModeToggleValue = 0;
         //write initialization txt
         using(StreamWriter writer = new StreamWriter(Path.Combine(directoryPath, "Initialization.txt")))
         {
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
         WriteInitializationDocument();
         SelectCharacters();
         SelectEnvironment();
+        SetCameraMode();
         GameSettings.LoadGameScene();
     }
 
@@ -46,5 +49,18 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("QUIT");
         Application.Quit();
+    }
+
+    private int cameraMode = 0;
+    private void VRModeToggle()
+    {
+        if (vrModeToggle.isOn) cameraMode = 1;
+        else cameraMode = 0;
+    }
+
+    private void SetCameraMode()
+    {
+        VRModeToggle();
+        GameSettings.SetGameInputMode(cameraMode);
     }
 }
