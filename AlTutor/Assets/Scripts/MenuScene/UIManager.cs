@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         using(StreamWriter writer = new StreamWriter(Path.Combine(directoryPath, "Initialization.txt")))
         {
             writer.WriteLine($"accent: {accentDropdown.value}");
-            writer.WriteLine($"loverMode: {loverModeToggleValue}");
+            writer.WriteLine($"PromptMode: {chooseAIPromptDropdown.value}");
         }
     }
     private void SelectCharacters()

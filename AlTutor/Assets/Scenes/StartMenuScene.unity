@@ -996,7 +996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Prompt1
+  m_text: Prompt0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c266fd35d115134d9e50b65fdfcc6af, type: 2}
   m_sharedMaterial: {fileID: 5851932690954184281, guid: 1c266fd35d115134d9e50b65fdfcc6af, type: 2}
@@ -1317,13 +1317,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Prompt0
+      m_Image: {fileID: 0}
     - m_Text: Prompt1
       m_Image: {fileID: 0}
     - m_Text: Prompt2
       m_Image: {fileID: 0}
     - m_Text: Prompt3
-      m_Image: {fileID: 0}
-    - m_Text: Prompt4
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

@@ -162,11 +162,17 @@ init_settings['loverMode'] = int(init_string.split()[3])
 #choose the prompt & which voice converter is using----------------------------------------------------------------        
 Txt_To_Mp3_Api_mode = init_settings['accentMode']
 
-if (init_settings['loverMode'] == 1):
-    with open(f"{common_path_prompts}\\lover_prompt.txt", "r", encoding="utf-8") as f2:
+if (init_settings['loverMode'] == 0):
+    with open(f"{common_path_prompts}\\prompt0.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+elif (init_settings['loverMode'] == 1):
+    with open(f"{common_path_prompts}\\prompt1.txt", "r", encoding="utf-8") as f2:
+        prompt_string = f2.read()
+elif (init_settings['loverMode'] == 2):
+    with open(f"{common_path_prompts}\\prompt2.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 else:
-    with open(f"{common_path_prompts}\\English_Teacher_prompt.txt", "r", encoding="utf-8") as f2:
+    with open(f"{common_path_prompts}\\prompt3.txt", "r", encoding="utf-8") as f2:
         prompt_string = f2.read()
 #-------------------------------------------------------------------------------------------------------
 
