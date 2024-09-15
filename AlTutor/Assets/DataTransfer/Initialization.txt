@@ -1,2 +1,2 @@
 accent: 0
-loverMode: 0
+loverMode: 1

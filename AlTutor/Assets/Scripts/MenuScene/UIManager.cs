@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown accentDropdown;
     [SerializeField] private TMP_Dropdown characterDropdown;
     [SerializeField] private TMP_Dropdown environmentDropdown;
+    [SerializeField] private TMP_Dropdown chooseAIPromptDropdown;
     [SerializeField] private Toggle loverModeToggle;
     [SerializeField] private Toggle vrModeToggle;
 
