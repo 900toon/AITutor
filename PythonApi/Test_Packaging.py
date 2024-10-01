@@ -193,10 +193,12 @@ os.environ['OPENAI_API_KEY'] = api_key
 
 client = OpenAI(api_key=api_key)
 
+original_model_name = "gpt-3.5-turbo"
+
 llm = ChatOpenAI(
     openai_api_key = api_key,
     temperature = 0,
-    model_name = "gpt-3.5-turbo"
+    model_name = "gpt-4o-mini-2024-07-18"
 )
 
 temp = ConversationEntityMemory(llm = llm, k=10)

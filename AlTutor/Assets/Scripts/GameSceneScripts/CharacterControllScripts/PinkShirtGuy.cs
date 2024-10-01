@@ -158,7 +158,7 @@ public class PinkShirtGuy : MonoBehaviour, ICharacterMovement
     void ForceToStay()
     {
         wanderingSpeed = 0;
-        transform.position = new Vector3(0, 0, -16);
+        transform.position = new Vector3(0, 0, -13);
         walkingTimerCount = -100;
         transform.GetComponent<Rigidbody>().isKinematic = true;
     }
