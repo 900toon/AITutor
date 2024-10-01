@@ -159,7 +159,8 @@ init_settings['loverMode'] = int(init_string.split()[3])
 #--------------------------------------------------------------------------------------------------
 
 
-#choose the prompt & which voice converter is using----------------------------------------------------------------        
+#choose the prompt & which voice converter is using----------------------------------------------------------------     
+# loverMode is the AI prompt mode, change the variable name might break it so i did not do it.   
 Txt_To_Mp3_Api_mode = init_settings['accentMode']
 
 if (init_settings['loverMode'] == 0):

@@ -137,5 +137,15 @@ public class KisoraChan : MonoBehaviour
         HandleCharacterAnimation();
         HandleAudio();
         HandleCharacterWandering();
+        //temp force to stay function
+        if (GameSettings.NPCForceToStay) ForceToStay();
+    }
+    //extended function for fliming video
+    void ForceToStay()
+    {
+        wanderingSpeed = 0;
+        transform.position = new Vector3(0, 0, -16);
+        walkingTimerCount = -100;
+        transform.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

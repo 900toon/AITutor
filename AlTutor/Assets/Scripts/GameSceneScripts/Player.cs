@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         LoadEveryFrame();
         HandlePlayerMovement();
         RestrictPlayerCoordination();
+        GameSettings.SwitchBetweenNPCForToStay();
         /*
         InteractDetection();
         */

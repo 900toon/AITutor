@@ -16,7 +16,6 @@ public class HandleNPC_UI : MonoBehaviour
         if (GameSettings.GetGameInputMode() == 0) {
             temp.gameObject.SetActive(false);
             panel.SetActive(false);
-                };
-
+        }
     }
 }

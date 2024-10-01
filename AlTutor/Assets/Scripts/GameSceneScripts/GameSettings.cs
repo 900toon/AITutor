@@ -106,4 +106,22 @@ public class GameSettings : MonoBehaviour
     {
         return GameInputMode;
     }
+
+    //temp variable for ForceToStayFunction
+    public static bool NPCForceToStay = false;
+    public static void SwitchBetweenNPCForToStay()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (NPCForceToStay == false)
+            {
+                NPCForceToStay = true;
+            }
+            else
+            {
+                NPCForceToStay = false;
+            }
+            
+        }
+    }
 }
