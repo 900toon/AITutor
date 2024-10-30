@@ -6,6 +6,9 @@ public class angGirl : MonoBehaviour
     public Animator animator { get; set; }
     public AudioSource audioSource;
     public int currentAnimationMovementIndex { get; set; }
+    public float wanderingSpeed { get; set; }
+    public bool isForcedToStay = false;
+
     public int EMOTIONSINT_HASH { get; set; }
     public void LookTowardPlayer()
     {
@@ -15,11 +18,12 @@ public class angGirl : MonoBehaviour
     }
     public void WalkTowardPosition(Vector3 targerPosition)
     {
-        
-        Vector3 newVector = targerPosition - transform.position;
-        transform.forward = newVector;
-        animator.SetBool("isWalk", true);
-
+        if (!isForcedToStay)
+        {
+            Vector3 newVector = targerPosition - transform.position;
+            transform.forward = newVector;
+            animator.SetBool("isWalk", true);
+        }
     }
 
     private void StopWalking()
@@ -160,6 +164,16 @@ public class angGirl : MonoBehaviour
         HandleCharacterAnimation();
         HandleAudio();
         HandleCharacterWandering();
+        if (GameSettings.NPCForceToStay) ForceToStay();
     }
-
+    //extended function for fliming video
+    void ForceToStay()
+    {
+        wanderingSpeed = 0;
+        transform.position = new Vector3(0, 0, -13);
+        walkingTimerCount = -100;
+        transform.GetComponent<Rigidbody>().isKinematic = true;
+        //specific for angGirl since the way she move is directly animation driven
+        isForcedToStay = true;
+    }
 }

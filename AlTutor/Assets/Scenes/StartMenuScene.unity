@@ -552,17 +552,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: English (Australian Female)
+    - m_Text: English (Aussi girl)
       m_Image: {fileID: 0}
-    - m_Text: English (British Female)
+    - m_Text: English (UK girl)
       m_Image: {fileID: 0}
-    - m_Text: English (British Male)
+    - m_Text: English (UK boy)
       m_Image: {fileID: 0}
-    - m_Text: English (Default male)
+    - m_Text: English (US boy)
       m_Image: {fileID: 0}
-    - m_Text: English (Default female)
-      m_Image: {fileID: 0}
-    - m_Text: Chinese/English (Hongkong)
+    - m_Text: English (US girl)
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2315,7 +2313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English (Australian Female)
+  m_text: English (Aussi girl)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
   m_sharedMaterial: {fileID: -3561683191136182542, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
@@ -4930,7 +4928,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Space Chamber
+    - m_Text: Modern Office
       m_Image: {fileID: 0}
     - m_Text: Medieval Room
       m_Image: {fileID: 0}
@@ -5352,7 +5350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Space Chamber
+  m_text: Modern Office
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
   m_sharedMaterial: {fileID: -3561683191136182542, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
