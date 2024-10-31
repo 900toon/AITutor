@@ -1350,7 +1350,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: English tutor
       m_Image: {fileID: 0}
-    - m_Text: 
+    - m_Text: Lover
       m_Image: {fileID: 0}
     - m_Text: 
       m_Image: {fileID: 0}
@@ -1893,15 +1893,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: PolyMale (Default)
+    - m_Text: BrownDude
       m_Image: {fileID: 0}
-    - m_Text: DarkLolita (female)
+    - m_Text: DarkLolita
       m_Image: {fileID: 0}
-    - m_Text: KisoraChan (female)
+    - m_Text: KisoraChan
       m_Image: {fileID: 0}
-    - m_Text: Muryotaisu (female)
+    - m_Text: Muryotaisu
       m_Image: {fileID: 0}
-    - m_Text: PinkShirtGuy (male)
+    - m_Text: PinkShirtBoss
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PolyMale (Default)
+  m_text: BrownDude
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
   m_sharedMaterial: {fileID: -3561683191136182542, guid: fe9e04bc5dc77ab4f822a8f2ff1faf39, type: 2}
