@@ -1,2 +1,2 @@
 accent: 0
-PromptMode: 0
+PromptMode: 1
